@@ -28,7 +28,7 @@ int main()
 {
     using namespace std;
     
-	cout << "[mst] doodle" << endl << endl;
+	cout << "[mst] doodle" << '\n' << '\n';
 
 	cin.get(); // pseudo-pause the console
 	return 0;

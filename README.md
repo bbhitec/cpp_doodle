@@ -4,7 +4,7 @@
 Learning and best-practicing C++ language and its libraries 📝🧑‍🎓
 
 ## WIP
-- [ ] just imported. filter/clean apps
+- [-] just imported. filter/clean apps
 - [ ] cpp/cs integration?
 - [ ] Make tools?
 <br><br>

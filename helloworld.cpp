@@ -22,9 +22,12 @@
 ////////////////// DRIVER
 int main()
 {
+    // [bp] putting this in the global space is an overhead
+    // even worse in a header file as would foce including in all users
     using namespace std;
     
-	cout << "[mst] hello world" << endl << endl;
+    // [bp] using endl would force a flush.                            
+	cout << "[mst] hello world" << '\n' << '\n';
 
 	cin.get(); // pseudo-pause the console
 	return 0;
