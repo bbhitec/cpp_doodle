@@ -6,11 +6,10 @@
     template for new files creation
 
     features, changelog:
-    -2021.01: -initial draft
-            -another item
-    -2020.12: [wip][here] indicate optional miscompletion
+    -2021.04:	-initial draft
+				[wip][here] indicate optional miscompletion
 
-    @version 0.1 2022.01.27
+    @version 0.1 2022.04
 */
 
 

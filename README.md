@@ -7,6 +7,7 @@ Learning and best-practicing C++ language and its libraries 📝🧑‍🎓
 - [-] just imported. filter/clean apps
 - [ ] cpp/cs integration?
 - [ ] Make tools?
+- [ ] cpp: use of makefiles and dynamic/static includes
 <br><br>
 
 ## Gains
