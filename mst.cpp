@@ -4,12 +4,16 @@
     @brief  title or quick description
     full/optional description: this is a placeholder
     template for new files creation
+    
+    
+    Gains:
+    -
 
     features, changelog:
-    -2021.04:	-initial draft
+    -2022.11:	-initial draft
 				[wip][here] indicate optional miscompletion
 
-    @version 0.1 2022.04
+    @version 0.1 2022.11
 */
 
 
