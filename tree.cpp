@@ -142,9 +142,9 @@ int main()
 	TreeNode* tree2 = utils.invertTree(&tree1);
 	tree2->printInOrder();
 
+    //utils.fancyPrint(&tree1);
 
-    cout << "tree depth: "  << utils.treeDepth(&tree1) << '\n';
-     utils.fancyPrint(&tree1);
+	
 
 	cin.get(); // pseudo-pause the console
 	return 0;

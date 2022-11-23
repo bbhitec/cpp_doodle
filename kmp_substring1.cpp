@@ -3,12 +3,14 @@
 // practicing a substring searching with a Knuth-Morris-Pratt(KMP) Pattern Matching algorithm
 // based on: https://youtu.be/GTJr8OvyEVQ
 //
+// gains:
+// - KMP algorithm
+// - console prints coloring :)
 //
 // features, changelog:
 // - initial. c style, naive implementation
 // - 2020.12.25 full kmp implementation 
 //		- added assisting color-coded debug prints
-// - [wip] 2021.10.11 implement strcmp
 
 ////////////////// LIBS
 
