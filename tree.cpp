@@ -25,12 +25,7 @@ public:
 	int val;
 	TreeNode *left;
 	TreeNode *right;
-	// [demo][wip] various constructor syntaxes?
-	//TreeNode(){
-	//	val = 0;
-	//	left = nullptr;
-	//	right = nullptr;
-	//}
+	TreeNode *parent; // the parent node is not always available
 	TreeNode() : val(-1), left(nullptr), right(nullptr){}	// here invalid value is -1
 	TreeNode(int x) : val(x), left(nullptr), right(nullptr){}
 	TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right){}
@@ -41,7 +36,7 @@ public:
 		if (right) { right->printInOrder(); }
 	}
 
-	// binary search tree insertion
+	// binary search tree insertion (recursive)
 	void insert(int x) {
 		// empty tree case
 		if (val == -1) {
@@ -63,13 +58,23 @@ public:
 		}
 	}
 
-};
+	// check if a value present in the given (sub)tree
+	bool find (int val) {
+		TreeNode *root=this;
+		if (root == nullptr){
+			return false;
+		}
 
-// this is singled-out as a specific solution for leetcode
-// time: O(n) we must visit each tree node at least once
-// space: O(n) n nodes visited will populate the stack
-class TreeUtils {
-public:
+		if (root->val == val) return true;
+		if (val > root->val) {
+			return right->find(val);
+		} else {
+			return left->find(val);
+		}
+	}
+
+	// used in leetcode 226, a recursive tree inversion
+	// [wip] some pointers may be omitted
 	TreeNode* invertTree(TreeNode* root){
 		// stopping condition: we are at the leaf
 		if (root == nullptr){
@@ -85,6 +90,41 @@ public:
 		return root;
 	}
 
+	// In Binary Tree, Inorder successor of a node is the next node in Inorder traversal of the Binary Tree. Inorder Successor is NULL for the last node in Inorder traversal.
+	// used in leetcode 285 [here] also, consider a version with a parent pointer type of nodes
+	int inOrderSuccessor (int val) {
+		// reached a leaf (int not found)
+		if (this == nullptr) {
+			return -1;
+		}
+
+		// value found - indicate that spotted
+		if (val == this->val) {
+			if (this->right) return this->right->val;
+			return -2;
+		}
+		int res;
+		if (val > this->val) {
+			res = right->inOrderSuccessor(val);
+			if (res == -2) return this->val;
+			return res;
+		} else {
+			res = left->inOrderSuccessor(val);
+			if (res == -2) return this->val;
+			return res;
+		}
+	}
+
+
+
+
+};
+
+// this is singled-out as a specific solution for leetcode
+// time: O(n) we must visit each tree node at least once
+// space: O(n) n nodes visited will populate the stack
+class TreeUtils {
+public:
     int treeDepth (TreeNode *root) {
         if (root == nullptr){
 			return 0;
@@ -94,8 +134,7 @@ public:
         return 1 + treeDepth(root->left);
     }
 
-    // [wip][here] print the bst in a sexy way
-    // [bp] use charmap?
+    // [wip] print the bst in a sexy way. se charmap?
     void fancyPrint (TreeNode *root) {
         if (root == nullptr){
 			return;
@@ -111,7 +150,6 @@ public:
         fancyPrint(root->right);
 
     }
-
 };
 
 
@@ -125,6 +163,12 @@ int main()
 	TreeNode tree1;
 
 	// inserting values as the example shows: [4,2,7,1,3,6,9]
+	//    4
+	//   / \
+	//  2   7
+	// / \  / \
+	//1   3 6  9
+
 	tree1.insert(4);
 	tree1.insert(2);
 	tree1.insert(7);
@@ -134,16 +178,26 @@ int main()
 	tree1.insert(9);
 	cout << "inputting: [4,2,7,1,3,6,9]" << endl;
 	tree1.printInOrder();	// [wip] i want a sexy tree-like print!
+	//utils.fancyPrint(&tree1);
+
+
+	// finding an integer in a tree
+	int target1 = 6;	
+	string res = (tree1.find(target1))?"true":"false";
+	cout << "finding " <<target1<<" in tree1: " << res << endl;
 
 
     // inverting a binary tree (used in leetcode 226)
 	cout << "inverting..." << endl;
-	TreeUtils utils;
-	TreeNode* tree2 = utils.invertTree(&tree1);
-	tree2->printInOrder();
+	tree1.invertTree(&tree1);
+	tree1.printInOrder();
+	tree1.invertTree(&tree1);	// revert state
 
-    //utils.fancyPrint(&tree1);
+	// in-order successor
+	int target2 = 3;
+	cout << "in-order successor of: " <<target2<<" in tree1: " << tree1.inOrderSuccessor(target2) << endl;
 
+	
 	
 
 	cin.get(); // pseudo-pause the console

@@ -22,40 +22,40 @@ using namespace std;
 // will demonstrate different constructor types
 // more examples: https://www.geeksforgeeks.org/move-constructors-in-c-with-examples/
 class Box {
-public:
-    Box() { std::cout << "default" << std::endl; }
-    Box(int width, int height, int length)
-       : m_width(width), m_height(height), m_length(length)
-    {
-        std::cout << "int,int,int" << std::endl;
-    }
-	
-	// copy constructor - will copy the actual data
-    Box(Box& other)  : m_width(other.m_width), m_height(other.m_height), m_length(other.m_length)
-    {
-        std::cout << "copy" << std::endl;
-    }
-
-	// move constructor - will point to already existing object (r-value referencing)
-    Box(Box&& other) : m_width(other.m_width), m_height(other.m_height), m_length(other.m_length)
-    {
-        m_contents = std::move(other.m_contents);
-        std::cout << "move" << std::endl;
-    }
-    int Volume() { return m_width * m_height * m_length; }
-    void Add_Item(string item) { m_contents.push_back(item); }
-    void Print_Contents() { for (const auto& item : m_contents) cout << item << " ";}
 private:
     int m_width{ 0 };	// [bp] 'm_' prefix is for 'member', default value is 0
     int m_height{ 0 };
     int m_length{ 0 };
     vector<string> m_contents;
+
+public:
+    // [demo] default constructor with two ways to init a member value
+    Box() : m_width(0){
+        m_width = 0;
+        std::cout << "default" << std::endl;
+    }
+    Box(int width, int height, int length) : m_width(width), m_height(height), m_length(length) {
+        std::cout << "int,int,int" << std::endl;
+    }	
+	// copy constructor - will copy the actual data
+    Box(Box& other)  : m_width(other.m_width), m_height(other.m_height), m_length(other.m_length) {
+        std::cout << "copy" << std::endl;
+    }
+	// move constructor - will point to already existing object (r-value referencing)
+    Box(Box&& other) : m_width(other.m_width), m_height(other.m_height), m_length(other.m_length) {
+        m_contents = std::move(other.m_contents);
+        std::cout << "move" << std::endl;
+    }
+
+    int Volume() { return m_width * m_height * m_length; }
+    void Add_Item(string item) { m_contents.push_back(item); }
+    void Print_Contents() { for (const auto& item : m_contents) cout << item << " ";}
 };
 
 // standalone Box generation
 Box get_Box()
 {
-    Box b(5, 10, 18); // "int,int,int"
+    Box b(5, 10, 18); // "int,int,int" constructor will be called
     b.Add_Item("Toupee");
     b.Add_Item("Megaphone");
     b.Add_Item("Suit");
@@ -73,12 +73,21 @@ int main()
 	cout << "[mst] hello world" << '\n' << '\n';
 
 
+    // pointers
+    int x = 1;
+    int *p = &x;
+    //int &&q = p; [wip] document the double reference operator
+
 	// [demo] different constructors and behaviors
-	Box b; // "default"
-    Box b1(b); // "copy"
-    Box b2(get_Box()); // "move"
+	Box b; // "default" constructor
+    Box b1(b); // "copy" constructor will deep copy data from the original instance
+    Box b2(get_Box()); // the rvalue argument will call "move" constructor, the created box will be moved under b2
+    //[wip] why 'move' string is not printed? [here]
     cout << "b2 contents: ";
     b2.Print_Contents(); // Prove that we have all the values
+
+
+    
 
 
 	// [demo] array declaration and initialization
@@ -99,7 +108,6 @@ int main()
 	for (const auto& member : stack_array) {
 		arr_vec.push_back(member);
 	}
-
 
 
 	// cin.get(); // pseudo-pause the console
