@@ -117,6 +117,18 @@ int main()
     cout << "key: " << key1 << " typeid<key>: " << typeid(key1).name() << '\n';
     cout << "value  " << status_messages[key1] << " typeid<value>: " << typeid(status_messages[key1]).name() << '\n';
 
+    // finding a key
+    int key_find = 403;
+    if (status_messages.find(key_find) == status_messages.end())
+        cout << key_find << " not found\n";
+    else
+        cout << "Found " << key_find << endl;
+
+    
+    // a way to print/traverse uo map
+    for (auto x : status_messages) cout << x.first << " " << x.second << endl;
+
+
 
     cout << endl << "[mst] manual implementation" << '\n';
     hashMapTable hash;

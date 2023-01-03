@@ -58,6 +58,14 @@ public:
 		}
 	}
 
+	// insertion overloaded for array-to-tree conversion
+	void insert(int arr[], int size) {
+		if (size == 0) return;
+		for(int i = 0; i<size; i++) {
+			this->insert(arr[i]);
+		}
+	}
+
 	// check if a value present in the given (sub)tree
 	bool find (int val) {
 		TreeNode *root=this;
@@ -74,7 +82,6 @@ public:
 	}
 
 	// used in leetcode 226, a recursive tree inversion
-	// [wip] some pointers may be omitted
 	TreeNode* invertTree(TreeNode* root){
 		// stopping condition: we are at the leaf
 		if (root == nullptr){
@@ -90,7 +97,9 @@ public:
 		return root;
 	}
 
-	// In Binary Tree, Inorder successor of a node is the next node in Inorder traversal of the Binary Tree. Inorder Successor is NULL for the last node in Inorder traversal.
+	// [here] use https://www.geeksforgeeks.org/inorder-successor-in-binary-search-tree/ to complete
+	// In Binary Tree, Inorder successor of a node is the next node in Inorder traversal of the Binary Tree.
+	// Inorder Successor is NULL for the last node in Inorder traversal.
 	// used in leetcode 285 [here] also, consider a version with a parent pointer type of nodes
 	int inOrderSuccessor (int val) {
 		// reached a leaf (int not found)
@@ -169,13 +178,8 @@ int main()
 	// / \  / \
 	//1   3 6  9
 
-	tree1.insert(4);
-	tree1.insert(2);
-	tree1.insert(7);
-	tree1.insert(1);
-	tree1.insert(3);
-	tree1.insert(6);
-	tree1.insert(9);
+	int array[7] = { 4,2,7,1,3,6,9 };
+	tree1.insert(array,7);
 	cout << "inputting: [4,2,7,1,3,6,9]" << endl;
 	tree1.printInOrder();	// [wip] i want a sexy tree-like print!
 	//utils.fancyPrint(&tree1);

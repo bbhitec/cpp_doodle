@@ -4,6 +4,7 @@
     @brief  Basic cpp familiarity
 
     features, changelog:
+    -2023.01: more iterators and inputs stuff
     -2022.11: initial template draft
 	-2022.11: static and dynamic allocation, vector operation
 	-2022.11: various constructors demo (copy/move)
@@ -13,8 +14,9 @@
 
 
 ////////////////// LIBS
-#include <iostream>            // usage of console prints
+#include <iostream>             // usage of console prints
 #include <vector>
+#include <bits/stdc++.h>        // usage of: find_if
 using namespace std;
 
 ////////////////// DECL_IMPL
@@ -62,6 +64,33 @@ Box get_Box()
     return b;
 }
 
+
+
+string ltrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        s.begin(),
+        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
+    );
+
+    return s;
+}
+
+string rtrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
+        s.end()
+    );
+
+    return s;
+}
+
+
+
+
 ////////////////// DRIVER
 int main()
 {
@@ -69,7 +98,7 @@ int main()
     // even worse in a header file as would foce including in all users
     //using namespace std;
     
-    // [bp] using endl would force a flush.                            
+    // [bp] using endl will force a flush, sometimes we don't need to
 	cout << "[mst] hello world" << '\n' << '\n';
 
 
@@ -87,8 +116,6 @@ int main()
     b2.Print_Contents(); // Prove that we have all the values
 
 
-    
-
 
 	// [demo] array declaration and initialization
 	const int length = 3;	// the size is const
@@ -100,6 +127,7 @@ int main()
     for (const auto& member : stack_array) {		
 		std::cout << member << ", ";
 	}
+    cout << endl;
 
 	delete[] array;
 
@@ -108,6 +136,23 @@ int main()
 	for (const auto& member : stack_array) {
 		arr_vec.push_back(member);
 	}
+
+    // [demo] another way for an iterator based loop
+    for (auto i = arr_vec.begin(); i != arr_vec.end(); ++i) {
+        cout << *i << " ";
+    }
+    cout << endl;
+
+
+
+    // [demo] handling inputs
+    string n_temp;
+    getline(cin, n_temp);
+
+    // ASCII to integer
+    int n = stoi(ltrim(rtrim(n_temp)));
+    cout << "trimmed input: " << n << endl;
+
 
 
 	// cin.get(); // pseudo-pause the console
