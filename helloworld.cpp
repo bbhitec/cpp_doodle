@@ -147,11 +147,15 @@ int main()
 
     // [demo] handling inputs
     string n_temp;
+    // [demo][bp] using cin >> n_temp would tesminate input on a space!
     getline(cin, n_temp);
 
     // ASCII to integer
     int n = stoi(ltrim(rtrim(n_temp)));
     cout << "trimmed input: " << n << endl;
+
+    string s = "Hello";
+    cout << s + n_temp << endl;
 
 
 
