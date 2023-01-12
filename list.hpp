@@ -30,6 +30,7 @@ public:
 
     // methods
     void printList();
+    void pushList(int val);
 };
 
 // Optional wrapper list class

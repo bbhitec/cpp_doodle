@@ -1,7 +1,7 @@
 /**
     @author [mst]
     @file   tree.cpp
-    @brief  Linked list implementations
+    @brief  Binary tree implementations and utils
     Binary search tree implementation and best practices doodle
 
     features, changelog:
