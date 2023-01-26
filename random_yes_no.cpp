@@ -1,6 +1,6 @@
 /**
     @author [mst]
-    @file   random_yes_no.cpp   
+    @file   random_yes_no.cpp
     @brief  simple yes/no randomizer
 
     features, changelog:
@@ -18,15 +18,15 @@ int main ()
 {
 	using namespace std;
 
-	int i;	
-	
+	int i;
+
 	cout << "[mst] simple randomizer! press to roll!" << '\n';
 	cin.get();	// empty input
 	cin.sync(); // discard remaining buffer
-	
+
 	srand(time(0));
 	i = rand()%2;
-	
+
 	cout << ((i)?"yes":"no") << '\n';
 
 	cin.get(); // pseudo-pause the console

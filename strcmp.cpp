@@ -5,7 +5,7 @@
 // features, changelog:
 // -2021.10.11: -initial draft
 // -[wip]
-// 
+//
 
 
 ////////////////// LIBS
@@ -16,11 +16,11 @@ using namespace std;
 ////////////////// DECL_IMPL
 
 int strcmp_me (string str1, string str2){
-    
+
     if (str1.empty() || str2.empty()) {
         return -1;
     }
-    
+
     /*
     int i = 0;
     while (str1.at(i) != '\n' && str2.at(i) != '\n') {

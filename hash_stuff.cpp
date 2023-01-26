@@ -63,7 +63,7 @@ public:
     int get (int key) {
         int hash = hashFunc(key);
 
-        // hash-find the correct place for the member        
+        // hash-find the correct place for the member
         while ((table[hash] != nullptr) && (table[hash]->key != key)) {
             hash = hashFunc(hash + 1);
         }
@@ -124,7 +124,7 @@ int main()
     else
         cout << "Found " << key_find << endl;
 
-    
+
     // a way to print/traverse uo map
     for (auto x : status_messages) cout << x.first << " " << x.second << endl;
 
@@ -171,9 +171,9 @@ int main()
          default:
             cout<<"Enter correct option";
       }
-   }   
+   }
 
-    
+
 
 	cin.get(); // pseudo-pause the console
 	return 0;

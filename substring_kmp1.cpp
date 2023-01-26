@@ -9,7 +9,7 @@
 //
 // features, changelog:
 // - initial. c style, naive implementation
-// - 2020.12.25 full kmp implementation 
+// - 2020.12.25 full kmp implementation
 //		- added assisting color-coded debug prints
 
 ////////////////// LIBS
@@ -91,11 +91,11 @@ void print_str_point(const char* arr, int i, int j, int clr) {
 
 
 
-// a naive substring pattern search. simply iterate strcmp at each index. 
+// a naive substring pattern search. simply iterate strcmp at each index.
 // targeted at O(n*m) time
-// 
+//
 int substr_naive(const char *str, const char *patt)
-{	
+{
 	const char *str_ptr = str;	// record for full string visibility
 	int i = 0;
 	int pat_len = strlen(patt);
@@ -129,9 +129,9 @@ int substr_naive(const char *str, const char *patt)
 }
 
 
-// a KMP (Knuth-Morris-Pratt algorithm) substring pattern search: 
+// a KMP (Knuth-Morris-Pratt algorithm) substring pattern search:
 // targeted at O(n+m) time
-// 
+//
 int substr_kmp(const char *str, const char *patt)
 {
 	int result = -1;
@@ -164,12 +164,12 @@ int substr_kmp(const char *str, const char *patt)
 	if (DEBUG){ printf("\nstr|pat\n---|---\n"); }	// header
 	while ((i < str_len_s) || (j < str_len_p)){
 		// match found
-		if (str[i] == patt[j]) {	
+		if (str[i] == patt[j]) {
 			if (DEBUG) {
 				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), CLR_GRN);
 				printf(" %c = %c \n", str[i], patt[j]);
 				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), CLR_DEF);
-			}	
+			}
 			j++;
 			i++;
 
@@ -177,7 +177,7 @@ int substr_kmp(const char *str, const char *patt)
 			if (j == str_len_p) {
 				result = i - str_len_p;
 				break;
-			}			
+			}
 		} // match found
 
 		// no match
@@ -195,9 +195,9 @@ int substr_kmp(const char *str, const char *patt)
 				}
 			}
 			if (j > 0) { j = occurences[j - 1]; }	// continue matching from a prefix
-			else { i++; }			
+			else { i++; }
 		} // no match
-		
+
 	}
 
 	// cleanup
@@ -214,7 +214,7 @@ int main(int argc, char *argv[])
 	printf("[mst] Knuth-Morris-Pratt(KMP) Pattern Matching algorithm doodle\n");
 	int res = -1;
 
-	// naive run	
+	// naive run
 	char text1[]		= "abckkkabcxkkkabc";
 	char substr1[]	= "abcx";
 	printf("\nnaive pattern search (nested loop): %s in string: %s\n", substr1, text1);
@@ -228,7 +228,7 @@ int main(int argc, char *argv[])
 
 	char text[] = "abxabcabcabcaby";
 	char substr[] = "abcaby";
-	printf("\n\nKMP-matching pattern: %s in string: %s\n", substr, text);	
+	printf("\n\nKMP-matching pattern: %s in string: %s\n", substr, text);
 	res = substr_kmp(text, substr);
 	if (-1 != res) {
 		printf("found a substring at index %d:\n", res);

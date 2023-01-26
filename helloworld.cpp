@@ -1,6 +1,6 @@
 /**
     @author [mst]
-    @file   helloworld.cpp    
+    @file   helloworld.cpp
     @brief  Basic cpp familiarity
 
     features, changelog:
@@ -38,7 +38,7 @@ public:
     }
     Box(int width, int height, int length) : m_width(width), m_height(height), m_length(length) {
         std::cout << "int,int,int" << std::endl;
-    }	
+    }
 	// copy constructor - will copy the actual data
     Box(Box& other)  : m_width(other.m_width), m_height(other.m_height), m_length(other.m_length) {
         std::cout << "copy" << std::endl;
@@ -97,7 +97,7 @@ int main()
     // [bp] putting this in the global space is an overhead
     // even worse in a header file as would foce including in all users
     //using namespace std;
-    
+
     // [bp] using endl will force a flush, sometimes we don't need to
 	cout << "[mst] hello world" << '\n' << '\n';
 
@@ -124,7 +124,7 @@ int main()
 	memcpy(array, stack_array,  sizeof(stack_array));
 
 	// [demo] using 'auto' for type inference and a more generic approach. will not work for dynamic array pointer
-    for (const auto& member : stack_array) {		
+    for (const auto& member : stack_array) {
 		std::cout << member << ", ";
 	}
     cout << endl;
@@ -142,6 +142,14 @@ int main()
         cout << *i << " ";
     }
     cout << endl;
+
+    // 2D vector initialization
+    vector<vector<int>> vect
+    {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
 
 
 

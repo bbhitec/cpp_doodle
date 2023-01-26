@@ -20,7 +20,7 @@ using namespace std;
 
 class TreeNode {
 private:
-	
+
 public:
 	int val;
 	TreeNode *left;
@@ -43,7 +43,7 @@ public:
 			val = x;
 			return;
 		}
-		
+
 		if (x <= val) {	// value lesser than the root will be routed left
 			if (left == nullptr){ left = new TreeNode(x); }	// empty left node
 			else {
@@ -54,7 +54,7 @@ public:
 			if (right == nullptr){ right = new TreeNode(x); }	// empty right node
 			else {
 				right->insert(x);	// non empty right node
-			}			
+			}
 		}
 	}
 
@@ -147,7 +147,7 @@ public:
     void fancyPrint (TreeNode *root) {
         if (root == nullptr){
 			return;
-		}        
+		}
 
         int depth = treeDepth(root);
         for (int i = 0; i < depth; i++) cout << "  ";
@@ -155,7 +155,7 @@ public:
         for (int j = 0; j < depth-1; j++) cout << "  ";
         cout << '/' << "  " << '\\' << endl;
 
-        fancyPrint(root->left);        
+        fancyPrint(root->left);
         fancyPrint(root->right);
 
     }
@@ -186,7 +186,7 @@ int main()
 
 
 	// finding an integer in a tree
-	int target1 = 6;	
+	int target1 = 6;
 	string res = (tree1.find(target1))?"true":"false";
 	cout << "finding " <<target1<<" in tree1: " << res << endl;
 
@@ -201,8 +201,8 @@ int main()
 	int target2 = 3;
 	cout << "in-order successor of: " <<target2<<" in tree1: " << tree1.inOrderSuccessor(target2) << endl;
 
-	
-	
+
+
 
 	cin.get(); // pseudo-pause the console
 	return 0;

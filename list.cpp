@@ -41,7 +41,7 @@ void ListNode::printList() {
 }
 
 // [demo] externally define a class method
-ListNode::ListNode(int x, ListNode *next): 
+ListNode::ListNode(int x, ListNode *next):
     val(x), next(next) {}
 
 
@@ -66,7 +66,7 @@ void addTailList(ListNode* &head, int val) {
     ListNode* ptr = head;
     while (ptr->next) {
         ptr = ptr->next;
-    }    
+    }
     ptr->next = NewNode;
 }
 
@@ -82,7 +82,7 @@ int main()
     // even worse in a header file as would foce including in all users
     using namespace std;
 
-    // [bp] using endl would force a flush.                            
+    // [bp] using endl would force a flush.
     cout << "[mst] cpp linked listss doodle" << '\n' << '\n';
 
     ListNode* l5 = nullptr;
@@ -94,7 +94,7 @@ int main()
     addTailList (l5,9);
     addTailList (l5,9);
     l5->printList();
-    
+
 
 
 
