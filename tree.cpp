@@ -127,6 +127,7 @@ public:
 
 
 
+
 };
 
 // this is singled-out as a specific solution for leetcode
@@ -134,7 +135,7 @@ public:
 // space: O(n) n nodes visited will populate the stack
 class TreeUtils {
 public:
-    int treeDepth (TreeNode *root) {
+    static int treeDepth (TreeNode *root) {
         if (root == nullptr){
 			return 0;
 		}
@@ -142,6 +143,16 @@ public:
         // in bst we only care about leftmost leaf for depth
         return 1 + treeDepth(root->left);
     }
+
+	// derive tree height
+	// [demo] make it static so it becomes a class method (i.e. used without an instance)
+	//
+	// used in hackerrank 30 days challenge
+	static int getHeight(TreeNode* root){
+          if (NULL == root) return -1;
+          return 1+std::max(getHeight(root->left),getHeight(root->right));
+	}
+
 
     // [wip] print the bst in a sexy way. se charmap?
     void fancyPrint (TreeNode *root) {
@@ -159,6 +170,10 @@ public:
         fancyPrint(root->right);
 
     }
+
+
+
+
 };
 
 
@@ -197,6 +212,9 @@ int main()
 	tree1.printInOrder();
 	tree1.invertTree(&tree1);	// revert state
 
+	cout << "tree height: " << TreeUtils::getHeight(&tree1) << endl;
+	cout << "tree depth: " << TreeUtils::treeDepth(&tree1) << endl;
+
 	// in-order successor
 	int target2 = 3;
 	cout << "in-order successor of: " <<target2<<" in tree1: " << tree1.inOrderSuccessor(target2) << endl;
@@ -204,6 +222,8 @@ int main()
 
 
 
-	cin.get(); // pseudo-pause the console
+
+
+	//cin.get(); // pseudo-pause the console
 	return 0;
 }
