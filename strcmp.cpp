@@ -21,6 +21,8 @@ int strcmp_me (string str1, string str2){
         return -1;
     }
 
+    // [here]
+
     /*
     int i = 0;
     while (str1.at(i) != '\n' && str2.at(i) != '\n') {
