@@ -88,6 +88,36 @@ string rtrim(const string &str) {
     return s;
 }
 
+// [demo] handling basic inputs. not error-checked!
+void inputs_get_line() {
+    string n_temp;
+    // [demo][bp] using cin >> n_temp would terminate input on a space!
+    getline(cin, n_temp);
+
+    // ASCII to integer
+    int n = stoi(ltrim(rtrim(n_temp)));
+    cout << "trimmed input: " << n << endl;
+
+    string s = "Hello";
+    cout << s + n_temp << endl;
+}
+
+// [demo] handling basic inputs. not error-checked!
+void inputs_cin_check(){
+    int x;
+    cout << "Enter number: ";
+    cin >> x;
+
+    // [demo] requesting re-entry on a bad input
+    while (cin.fail()) {
+        cin.clear();    // clear the fail flag;
+        cin.ignore(INT_MAX, '\n');   // ignore previous stream (or op to a new-line)
+        cout << "Bad input. Please try again: ";
+        cin >> x;
+    }
+    cout << x << " is a correct input!" << endl;
+}
+
 
 
 
@@ -151,19 +181,10 @@ int main()
         {7, 8, 9}
     };
 
+    // inputs_get_line();
 
+    inputs_cin_check();
 
-    // [demo] handling inputs
-    string n_temp;
-    // [demo][bp] using cin >> n_temp would tesminate input on a space!
-    getline(cin, n_temp);
-
-    // ASCII to integer
-    int n = stoi(ltrim(rtrim(n_temp)));
-    cout << "trimmed input: " << n << endl;
-
-    string s = "Hello";
-    cout << s + n_temp << endl;
 
 
 
