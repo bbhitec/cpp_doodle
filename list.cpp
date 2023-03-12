@@ -70,6 +70,24 @@ void addTailList(ListNode* &head, int val) {
     ptr->next = NewNode;
 }
 
+// iterative list reversal
+// used in: leetcode 206
+ListNode* reverseList(ListNode* head) {
+    ListNode* prev = nullptr;
+    if (head) {
+        ListNode* curr = head;
+        ListNode* next;
+
+        while (curr){
+            next = curr->next;  // prep forward
+            curr->next = prev;  // link back
+            prev = curr;        // relocate new head
+            curr = next;        // advance
+        }
+    }
+    return prev;
+}
+
 
 
 

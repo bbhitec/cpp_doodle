@@ -2,8 +2,6 @@
     @author [mst]
     @file   hash_stuff.cpp
     @brief  hash tables and maps related
-    full/optional description: this is a placeholder
-    template for new files creation
 
     Gains:
     -STL built in hash options
