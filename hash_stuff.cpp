@@ -19,6 +19,7 @@
 #include <map>
 #include <unordered_map>
 #include <string>
+//#include <typeinfo>            // [demo] must be included for typeid since c++20
 using namespace std;
 const int TABLE_SIZE = 128;
 

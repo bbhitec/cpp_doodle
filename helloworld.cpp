@@ -36,6 +36,7 @@ public:
         m_width = 0;
         std::cout << "default" << std::endl;
     }
+    // overloaded constructor - compile time polymorphism
     Box(int width, int height, int length) : m_width(width), m_height(height), m_length(length) {
         std::cout << "int,int,int" << std::endl;
     }
@@ -46,13 +47,23 @@ public:
 	// move constructor - will point to already existing object (r-value referencing)
     Box(Box&& other) : m_width(other.m_width), m_height(other.m_height), m_length(other.m_length) {
         m_contents = std::move(other.m_contents);
+        other.m_width  = 0;
+        other.m_height = 0;
+        other.m_length = 0;
         std::cout << "move" << std::endl;
     }
+    friend ostream& operator<<(ostream &os, const Box& box);
 
     int Volume() { return m_width * m_height * m_length; }
     void Add_Item(string item) { m_contents.push_back(item); }
     void Print_Contents() { for (const auto& item : m_contents) cout << item << " ";}
 };
+
+// [demo] overloading stream operator for a print
+    ostream& operator<<(ostream &os, const Box& box){
+        for (const auto& item : box.m_contents) os << item << " ";
+        return os;
+    }
 
 // standalone Box generation
 Box get_Box()
@@ -71,7 +82,7 @@ string ltrim(const string &str) {
 
     s.erase(
         s.begin(),
-        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
+        find_if(s.begin(), s.end(), not_fn(ptr_fun<int, int>(isspace)))
     );
 
     return s;
@@ -81,7 +92,7 @@ string rtrim(const string &str) {
     string s(str);
 
     s.erase(
-        find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
+        find_if(s.rbegin(), s.rend(), not_fn(ptr_fun<int, int>(isspace))).base(),
         s.end()
     );
 
@@ -138,12 +149,19 @@ int main()
     //int &&q = p; [wip] document the double reference operator
 
 	// [demo] different constructors and behaviors
-	Box b; // "default" constructor
-    Box b1(b); // "copy" constructor will deep copy data from the original instance
-    Box b2(get_Box()); // the rvalue argument will call "move" constructor, the created box will be moved under b2
+	// Box b; // "default" constructor
+    // Box b1(b); // "copy" constructor (that we have overridden) will deep copy data from the original instance
+    Box b2(get_Box()); // the rvalue argument will call "int int int" constructor, the created box will be  under b2
+    // Box b3 = b2;    // will also invoke copy constructor;
+    Box b4 = move(b2);  // this will invoke the move constructor;
     //[wip] why 'move' string is not printed? [here]
-    cout << "b2 contents: ";
-    b2.Print_Contents(); // Prove that we have all the values
+    cout << "b4 contents: ";
+    // b2.Print_Contents(); // Prove that we have all the values
+    cout << b4; // overloaded << operator
+    cout << endl;
+    cout << "b2 contents after 'move': ";
+    cout << b2; // the moved members of b2 are nulled
+    cout << endl << endl;
 
 
 
