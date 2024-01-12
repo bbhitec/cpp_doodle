@@ -48,7 +48,7 @@ int main() {
     std::future<int> prodResult = prodPromise.get_future();
     std::future<int> divResult = divPromise.get_future();
 
-    // calculate the result in a separat thread
+    // calculate the result in a separate thread
     std::thread prodThread(product, std::move(prodPromise), a, b);
     Div div;
     std::thread divThread(div, std::move(divPromise), a, b);
