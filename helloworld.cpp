@@ -3,7 +3,7 @@
     @file   helloworld.cpp
     @brief  Basic cpp familiarity
 
-    features, changelog:
+    features, gains:
     -2023.01: more iterators and inputs stuff
     -2022.11: initial template draft
 	-2022.11: static and dynamic allocation, vector operation
@@ -99,8 +99,8 @@ string rtrim(const string &str) {
     return s;
 }
 
-// [demo] handling basic inputs. not error-checked!
-void inputs_get_line() {
+// [demo] handling basic inputs with getline. not error-checked!
+void inputs_getline() {
     string n_temp;
     // [demo][bp] using cin >> n_temp would terminate input on a space!
     getline(cin, n_temp);
@@ -113,7 +113,7 @@ void inputs_get_line() {
     cout << s + n_temp << endl;
 }
 
-// [demo] handling basic inputs. not error-checked!
+// [demo] handling basic inputs with cin
 void inputs_cin_check(){
     int x;
     cout << "Enter number: ";
@@ -143,12 +143,14 @@ int main()
 	cout << "[mst] hello world" << '\n' << '\n';
 
 
-    // pointers
+    ////////////// POINTERS
     int x = 1;
     int *p = &x;
     //int &&q = p; [wip] document the double reference operator
 
-	// [demo] different constructors and behaviors
+
+	////////////// CONSTRUCTORS
+    // [demo] different constructors and behaviors
 	// Box b; // "default" constructor
     // Box b1(b); // "copy" constructor (that we have overridden) will deep copy data from the original instance
     Box b2(get_Box()); // the rvalue argument will call "int int int" constructor, the created box will be  under b2
@@ -164,7 +166,7 @@ int main()
     cout << endl << endl;
 
 
-
+    ////////////// ARRAYS and VECTORS
 	// [demo] array declaration and initialization
 	const int length = 3;	// the size is const
 	int stack_array[length] = { 0, 32, 54 };		// this will cteate an (static)  array on the stack for the current scope (no delete needed)
@@ -199,10 +201,11 @@ int main()
         {7, 8, 9}
     };
 
-    // inputs_get_line();
 
-    inputs_cin_check();
 
+    ////////////// INPUTS
+    // inputs_getline();
+    // inputs_cin_check();
 
 
 
