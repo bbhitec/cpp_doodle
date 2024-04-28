@@ -130,7 +130,15 @@ void inputs_cin_check(){
 }
 
 
+// vector printing util func
+void print_vec(vector<int> nums) {
+	string divider = ", ";
+	cout << "the vector: ";
 
+	// here we use lambda with a capture group (outer variables to be seen within the lambda)
+    for_each(nums.begin(),nums.end(), [divider](int &x){cout << x << divider;});
+	cout << endl;
+}
 
 ////////////////// DRIVER
 int main()
@@ -166,6 +174,7 @@ int main()
     cout << endl << endl;
 
 
+
     ////////////// ARRAYS and VECTORS
 	// [demo] array declaration and initialization
 	const int length = 3;	// the size is const
@@ -186,6 +195,21 @@ int main()
 	for (const auto& member : stack_array) {
 		arr_vec.push_back(member);
 	}
+
+    // ways to deep-copy a vector
+    vector<int> v_assignop = arr_vec;
+    vector<int> v_constructor(arr_vec);
+    vector<int> v_copy;
+    copy(arr_vec.begin(), arr_vec.end(), back_inserter(v_copy));
+    vector<int> v_assign;
+    v_assign.assign(arr_vec.begin(), arr_vec.end());
+
+    print_vec(v_assignop);
+    print_vec(v_constructor);
+    print_vec(v_copy);
+    print_vec(v_assign);
+
+
 
     // [demo] another way for an iterator based loop
     for (auto i = arr_vec.begin(); i != arr_vec.end(); ++i) {
