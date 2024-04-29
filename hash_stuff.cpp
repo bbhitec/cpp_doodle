@@ -33,7 +33,7 @@ class hashEntry {
 public:
     int key;
     int val;
-    // [wip] can be implemented as a linked list originating at a hashed key
+    // [next] can be implemented as a linked list originating at a hashed key
     // example: https://github.com/DamienQuayle/Hash_Table
     hashEntry(int k, int v): key(k), val(v) {}
 };
@@ -47,16 +47,16 @@ public:
         table = new hashEntry*[TABLE_SIZE]{nullptr}; // array of arrays, nullified
     }
     ~hashMapTable() {
-         for (int i = 0; i < TABLE_SIZE; i++) {
-            if (table[i] != nullptr)
-               delete table[i];
-            delete[] table;
-         }
+        for (int i = 0; i < TABLE_SIZE; i++) {
+        if (table[i] != nullptr)
+            delete table[i];
+        delete[] table;
+        }
     }
 
     // a basic hashing function
     int hashFunc(int key) {
-         return key % TABLE_SIZE;
+        return key % TABLE_SIZE;
     }
 
     int get (int key) {
@@ -135,45 +135,43 @@ int main()
     int c;
 
     while (1) {
-      cout<<"1.Insert element into the table"<<endl;
-      cout<<"2.Search element from the key"<<endl;
-      cout<<"3.Delete element at a key"<<endl;
-      cout<<"4.Exit"<<endl;
-      cout<<"Enter your choice: ";
-      cin>>c;
-      switch(c) {
-         case 1:
-            cout<<"Enter element to be inserted: ";
-            cin>>v;
-            cout<<"Enter key at which element to be inserted: ";
-            cin>>k;
+        cout << "1.Insert element into the table" << endl;
+        cout << "2.Search element from the key" << endl;
+        cout << "3.Delete element at a key" << endl;
+        cout << "4.Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> c;
+        switch (c) {
+        case 1:
+            cout << "Enter element to be inserted: ";
+            cin >> v;
+            cout << "Enter key at which element to be inserted: ";
+            cin >> k;
             hash.insert(k, v);
-         break;
-         case 2:
-            cout<<"Enter key of the element to be searched: ";
-            cin>>k;
+            break;
+        case 2:
+            cout << "Enter key of the element to be searched: ";
+            cin >> k;
             if (hash.get(k) == -1) {
-               cout<<"No element found at key "<<k<<endl;
-               continue;
-            } else {
-               cout<<"Element at key "<<k<<" : ";
-               cout<<hash.get(k)<<endl;
+                cout << "No element found at key " << k << endl;
+                continue;
             }
-         break;
-         case 3:
-            cout<<"Enter key of the element to be deleted: ";
-            cin>>k;
+            else {
+                cout << "Element at key " << k << " : ";
+                cout << hash.get(k) << endl;
+            }
+            break;
+        case 3:
+            cout << "Enter key of the element to be deleted: ";
+            cin >> k;
             hash.remove(k);
-         break;
-         case 4:
+            break;
+        case 4:
             exit(1);
-         default:
-            cout<<"Enter correct option";
-      }
-   }
+        default:
+            cout << "Enter correct option";
+        }
+    }
 
-
-
-	cin.get(); // pseudo-pause the console
 	return 0;
 }
